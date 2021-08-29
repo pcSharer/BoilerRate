@@ -108,10 +108,10 @@ def radioCall():
 	comment.set(radioDefinition[index][5])
 
 	if isFirstDay.get(): 
-		finishTemp = day1Temp
+		finishTemp.set(day1Temp)
 		finishTime.set(day1Finish)
 	else:
-		finishTemp = cruiseTemp
+		finishTemp.set(cruiseTemp)
 		finishTime.set(cruiseTime)
 
 	setFinish()
@@ -120,7 +120,7 @@ def radioCall():
 def setFinish():
 	global cruiseTemp, day1Temp, day1Finish, cruiseTime, finishTemp, isRealTimeSelected
 
-	temperatureInfo.set(f"Warm-up finish at {finishTime.get()}, with temperature {finishTemp}")
+	temperatureInfo.set(f"Warm-up finish at {finishTime.get()}, with temperature {finishTemp.get()}")
 # End of SetFinish()
 
 
@@ -166,6 +166,11 @@ row +=1
 finishTime = StringVar()
 Label(frSetup, text='Finish time:').grid(row=row, column=0, sticky=E, padx=9)
 Entry(frSetup, textvariable=finishTime).grid(row=row, column=1)
+row +=1
+
+finishTemp = IntVar()
+Label(frSetup, text='Finish temp:').grid(row=row, column=0, sticky=E, padx=9)
+Entry(frSetup, textvariable=finishTemp).grid(row=row, column=1)
 row +=1
 
 comment = IntVar()
@@ -217,7 +222,7 @@ def continuedBelow(virtualEvent):		# Called by rememberConfig() when tab changes
 		settings.dateAndTimeStr = dateAndTimeStr
 
 		setFinish()
-		settings.finishTemp = finishTemp		# To ensure that finishTemp is set
+		settings.finishTemp = finishTemp.get()		# To ensure that finishTemp is set
 
 		settings.finishTime = finishTime.get()
 		#ic(settings.finishTime)
