@@ -173,7 +173,7 @@ Label(frSetup, text='Finish temp:').grid(row=row, column=0, sticky=E, padx=9)
 Entry(frSetup, textvariable=finishTemp).grid(row=row, column=1)
 row +=1
 
-comment = IntVar()
+comment = StringVar()
 Label(frSetup, text='Comment:').grid(row=row, column=0, sticky=E, padx=9)
 Entry(frSetup, textvariable = comment).grid(row=row, column=1)
 row +=1
